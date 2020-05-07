@@ -10,7 +10,6 @@ var express     = require('express')
 
 
 var server      = require('http').createServer(app) 
-var io          = require('socket.io')(server) 
 
 
 var port        = process.env.PORT || config.server.port 
@@ -18,9 +17,6 @@ var port        = process.env.PORT || config.server.port
 
 var bodyParser  = require('body-parser') 
 var helmet      = require('helmet') 
-var path        = require('path') 
-var multer      = require('multer') 
-var multipart   = require('connect-multiparty') 
 
 app.set('CONFIG', config) 
 
@@ -44,9 +40,6 @@ if (!sticky.listen(server, port)) {
         extended: true
     })) 
     app.use(bodyParser.json())        // to support JSON-encoded bodies
-    app.use(multipart({
-        uploadDir: config.tmp
-    })) 
 
 
     // ========================================== ROUTES ==========================================
